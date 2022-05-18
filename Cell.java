@@ -4,12 +4,33 @@ public class Cell{
     private int yCoodinate;
     private int nONeighbours;
     private boolean alive;
+    private boolean dying;
+    private boolean waking;
 
     public Cell(int x,int y){
         this.xCoordinate =x;
         this.yCoodinate =y;
+        this.alive = false;
 
     }
+    public int getNONeighbours(){
+        return this.nONeighbours;
+    }
+    public void setNONeighbours(int n){
+        this.nONeighbours = n;
+    }
+    public boolean isAlive(){
+
+        return this.alive;
+
+    }
+    public void wakeUp(){
+        this.alive = true;
+    }
+    public void kill(){
+        this.alive = false;
+    }
+
 
 
 
