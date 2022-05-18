@@ -29,6 +29,7 @@ public class Cell{
     }
     public void kill(){
         this.alive = false;
+
     }
 
 

@@ -1,4 +1,4 @@
-public class PlayingField{
+public class Board{
 
     private int xSize ;
     private int ySize;
@@ -6,7 +6,7 @@ public class PlayingField{
     private Cell[][] matrix2;
 
 
-    public PlayingField (int x, int y){
+    public Board (int x, int y){
 
         this.xSize=x;
         this.ySize=y;
@@ -25,21 +25,18 @@ public class PlayingField{
         this.matrix = newMatrix;
 
     }
-    public void update(PlayingField nextField){
+    public void update(Board nextField){
 
         for (int x = 1; x <this.xSize-1;x++){
             for (int y = 1; y< this.ySize-1; y++){
-
                 int nONeighbours = getNONeighbours(x,y);
                 nextField.matrix[x][y].setNONeighbours(nONeighbours);
             }
     }
            for (int x = 1; x <this.xSize-1;x++){
             for (int y = 1; y< this.ySize-1; y++){
-
                 playGame(x,y, nextField);
             }
-
 
     }
     }
@@ -47,7 +44,7 @@ public class PlayingField{
 
         return this.matrix[x][y];
     }
-    private void playGame(int x, int y, PlayingField nextField) {
+    private void playGame(int x, int y, Board nextField) {
 
         Cell cell = nextField.getCell(x,y);
         int neighbours =cell.getNONeighbours();
@@ -68,20 +65,13 @@ public class PlayingField{
         }
             if (neighbours <2 ) {
                 nextField.getCell(x,y).kill();
-
                 return;
             }
-
             if (neighbours >3){
-
                 nextField.matrix[x][y].kill();
-
                 return;
             }
-
-
-
-            }
+    }
 
 
 
@@ -133,7 +123,7 @@ public class PlayingField{
             for (int j = 1; j<this.xSize-1; j++){
                 if (this.matrix[i][j].isAlive()){
                     returnString += "* ";
-                        }else{ returnString +="0 ";}
+                        }else{ returnString +=". ";}
             }
         }
         return returnString;

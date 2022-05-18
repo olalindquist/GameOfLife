@@ -1,10 +1,10 @@
-/*
-*import junit.framework.TestCase;
-import junit.*;
-import static junit.Assert.*;
+import junit.framework.TestCase;
+import org.junit.*;
+import static org.junit.Assert.*;
 
 
 public class Tests extends TestCase {
+
     public void testTrue() {
         assertTrue(true);
     }
@@ -12,7 +12,15 @@ public class Tests extends TestCase {
     public void testFalse() {
         assertFalse(false);
     }
-    /*
+
+
+@Test
+public void test_setUpBoard(){
+
+    assertTrue(5==5);
+}
+    }
+/*
 ///////////////////////////////////////////////////////////////////
     @Test
     public void test_avatarGetPointTest(){
