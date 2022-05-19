@@ -2,9 +2,7 @@ import java.util.*;
 
 public class GameOfLife {
 
-    public static void switchFields(Board field1, Board field2){
-        field1.setMatrix(field2.getMatrix());
-    }
+
     public static void main(String[] args)  {
         Scanner scanner = new Scanner(System.in);
         //Setup

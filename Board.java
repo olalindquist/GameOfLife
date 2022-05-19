@@ -39,18 +39,18 @@ public class Board{
         this.matrix = newMatrix;
     }
 
-    public void playRound(Board nextBoard){
+    public void playRound(){
         int nONeighbours;
         for (int x = 1; x <this.xSize-1;x++){
             for (int y = 1; y< this.ySize-1; y++){
                 nONeighbours = getNONeighbours(x,y);
-                nextBoard.matrix[x][y].setNONeighbours(nONeighbours);
+                this.matrix[x][y].setNONeighbours(nONeighbours);
             }
         }
 
         for (int x = 1; x <this.xSize-1;x++){
             for (int y = 1; y< this.ySize-1; y++){
-                playGame(x,y, nextBoard);
+                playGame(x,y);
             }
         }
     }
@@ -58,8 +58,8 @@ public class Board{
         return this.matrix[x][y];
     }
 
-    private void playGame(int x, int y, Board nextBoard) {
-        Cell cell = nextBoard.getCell(x,y);
+    private void playGame(int x, int y) {
+        Cell cell = this.getCell(x,y);
         int neighbours =cell.getNONeighbours();
 
         if (neighbours == 2) {
@@ -70,15 +70,15 @@ public class Board{
             if (cell.isAlive()){
                 return ;
             } else {
-                nextBoard.getCell(x,y).wakeUp();
+                this.getCell(x,y).wakeUp();
             }
         }
         if (neighbours < 2 ) {
-            nextBoard.getCell(x,y).kill();
+            this.getCell(x,y).kill();
             return;
         }
         if (neighbours >3){
-            nextBoard.matrix[x][y].kill();
+            this.getCell(x,y).kill();
             return;
         }
     }

@@ -2,31 +2,27 @@ import  java.util.concurrent.TimeUnit;
 
 public class Game {
 
-    private Board board1;
-    private Board board2;
+    private Board board;
+
     private int speed ;
 
     public Game (int ySize, int xSize, int speed){
-        this.board1 = new Board(xSize, ySize);
-        this.board2 = new Board(xSize, ySize);
+        this.board = new Board(xSize, ySize);
+
         this.speed = speed;
     }
 
     public void addCell (int x, int y){
-        if (x== 0  || y == 0 || x > board1.getXSize() || y > board1.getYSize()){
+        if (x== 0  || y == 0 || x > board.getXSize() || y > board.getYSize()){
             throw new IllegalArgumentException("Cell out of bounds");
         }
-        board1.makeCellAlive(y,x);
-        board2.makeCellAlive(y,x);
+        board.makeCellAlive(y,x);
     }
 
-    private void updateBoard(){
-        this.board1.setMatrix(board2.getMatrix());
-        }
+
 
     public void playRound(){
-        board1.playRound(board2);
-        updateBoard();
+        board.playRound();
         try  {
         TimeUnit.MILLISECONDS.sleep(this.speed);
         }
@@ -36,6 +32,6 @@ public class Game {
     }
 
     public void showBoard(){
-        System.out.println(board1.toString());
+        System.out.println(board.toString());
     }
 }

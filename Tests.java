@@ -73,43 +73,33 @@ public class Tests extends TestCase {
     @Test
     public void test_kill_lonely_cell(){
         Board b1 = new Board(10,10);
-        Board b2 = new Board(10,10);
+
         b1.makeCellAlive(4,4);
-        b2.makeCellAlive(4,4);
-        b1.playRound(b2);
-        Cell c = b2.getCell(4,4);
+        b1.playRound();
+        Cell c = b1.getCell(4,4);
         assertFalse(c.isAlive());
     }
 
     @Test
     public void test_kill_cell_with_one_neighbour(){
         Board b1 = new Board(10,10);
-        Board b2 = new Board(10,10);
+
         b1.makeCellAlive(4,4);
-        b2.makeCellAlive(4,4);
-
         b1.makeCellAlive(4,3);
-        b2.makeCellAlive(4,3);
-
-        b1.playRound(b2);
-        Cell c = b2.getCell(4,3);
+        b1.playRound();
+        Cell c = b1.getCell(4,3);
         assertFalse(c.isAlive());
     }
 
     @Test
     public void test_survive_two_neighbours() {
         Board b1 = new Board(10,10);
-        Board b2 = new Board(10,10);
+
         b1.makeCellAlive(2,2);
         b1.makeCellAlive(3,2);
         b1.makeCellAlive(2,3);
-
-        b2.makeCellAlive(2,2);
-        b2.makeCellAlive(3,2);
-        b2.makeCellAlive(2,3);
-
-        b1.playRound(b2);
-        Cell c = b2.getCell(2,3);
+        b1.playRound();
+        Cell c = b1.getCell(2,3);
         assertTrue(c.isAlive()) ;
     }
 
@@ -121,47 +111,32 @@ public class Tests extends TestCase {
         b1.makeCellAlive(3,2);
         b1.makeCellAlive(4,2);
         b1.makeCellAlive(3,3);
-
-        b2.makeCellAlive(2,2);
-        b2.makeCellAlive(3,2);
-        b2.makeCellAlive(4,2);
-        b2.makeCellAlive(3,3);
-
-        b1.playRound(b2);
-        Cell c = b2.getCell(3,3);
+        b1.playRound();
+        Cell c = b1.getCell(3,3);
         assertTrue(c.isAlive()) ;
     }
 
     @Test
     public void test_wake_with_three_neighbours(){
         Board b1 = new Board(10,10);
-        Board b2 = new Board(10,10);
         b1.makeCellAlive(2,2);
         b1.makeCellAlive(3,2);
         b1.makeCellAlive(2,3);
         b1.makeCellAlive(2,4);
         b1.makeCellAlive(3,3);
-
-        b2.makeCellAlive(2,2);
-        b2.makeCellAlive(3,2);
-        b2.makeCellAlive(2,3);
-        b2.makeCellAlive(2,4);
-        b2.makeCellAlive(3,3);
-
-        b1.playRound(b2);
-        Cell c = b2.getCell(3,3);
+        b1.playRound();
+        Cell c = b1.getCell(3,3);
         assertFalse(c.isAlive());
     }
 
     @Test
     public void test_kill_if_overpopulated(){
         Board b1 = new Board(10,10);
-        Board b2 = new Board(10,10);
         b1.makeCellAlive(2,2);
         b1.makeCellAlive(3,2);
         b1.makeCellAlive(2,3);
-        b1.playRound(b2);
-        Cell c = b2.getCell(3,3);
+        b1.playRound();
+        Cell c = b1.getCell(3,3);
         assertTrue(c.isAlive());
     }
 
