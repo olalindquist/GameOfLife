@@ -5,27 +5,46 @@ public class Board{
     private Cell[][] matrix;
     private Cell[][] matrix2;
 
-
     public Board (int x, int y){
-
         this.xSize=x;
         this.ySize=y;
         this.matrix = new Cell[x+2][y+2]; //add to in order to make a border
-
         fill();
 
+    }
 
+    private void fill() {
+        for (int x = 0; x<this.ySize;x++){
+            for (int y = 0; y<this.xSize; y++){
+                this.matrix[x][y] = new Cell(x,y);
+            }
+        }
+    }
+
+    public void  makeCellAlive (int x, int y){
+        this.matrix [x][y].wakeUp();
+      }
+
+
+
+
+
+
+    public int getXSize(){
+        return this.xSize;
+    }
+        public int getYSize(){
+        return this.ySize;
     }
     public Cell[][] getMatrix (){
         return this.matrix;
-
     }
 
     public void setMatrix(Cell[][] newMatrix){
         this.matrix = newMatrix;
 
     }
-    public void update(Board nextField){
+    public void playRound(Board nextField){
 
         for (int x = 1; x <this.xSize-1;x++){
             for (int y = 1; y< this.ySize-1; y++){
@@ -37,20 +56,17 @@ public class Board{
             for (int y = 1; y< this.ySize-1; y++){
                 playGame(x,y, nextField);
             }
-
     }
     }
     public Cell getCell(int x, int y){
-
         return this.matrix[x][y];
     }
-    private void playGame(int x, int y, Board nextField) {
 
+    private void playGame(int x, int y, Board nextField) {
         Cell cell = nextField.getCell(x,y);
         int neighbours =cell.getNONeighbours();
 
         if (neighbours == 2) {
-
             return;
         }
 
@@ -128,19 +144,4 @@ public class Board{
         }
         return returnString;
     }
-
-    private void fill() {
-        for (int x = 0; x<this.ySize;x++){
-            for (int y = 0; y<this.xSize; y++){
-                this.matrix[x][y] = new Cell(x,y);
-            }
-        }
-    }
-    public void  makeCellAlive (int x, int y){
-        this.matrix [x][y].wakeUp();
-      }
-
-
-
-
 }

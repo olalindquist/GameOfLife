@@ -4,8 +4,6 @@ public class Cell{
     private int yCoodinate;
     private int nONeighbours;
     private boolean alive;
-    private boolean dying;
-    private boolean waking;
 
     public Cell(int x,int y){
         this.xCoordinate =x;

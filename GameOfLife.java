@@ -6,28 +6,27 @@ public class GameOfLife {
         field1.setMatrix(field2.getMatrix());
     }
 public static void main(String[] args) throws InterruptedException{
+
+    //Setup
+
     boolean gameIsOn = true;
+    int xSize = 30;
+    int ySize= 30;
 
-    Board field1 = new Board(15,15);
-    Board field2 = new Board(15,15);
-    field1.makeCellAlive(5,5);
-    field2.makeCellAlive(5,5);
-    field1.makeCellAlive(5,6);
-    field2.makeCellAlive(5,6);
-    field1.makeCellAlive(5,7);
-    field2.makeCellAlive(5,7);
-    field1.makeCellAlive(6,5);
-    field2.makeCellAlive(6,5);
+    int speed = 100;
+    Game game = new Game(xSize, ySize);
+    //Add cells to board x,y where 1<=x<=xMax &  1<=y<=yMax
+    game.addCell(1,30);
+    game.addCell(15,16);
+    game.addCell(15,17);
+    game.addCell(15,18);
+    game.addCell(15,19);
 
-
-    while (gameIsOn)
-
+       while (gameIsOn)
            {
-            System.out.println(field1);
-            field1.update(field2);
-            switchFields(field1, field2);
-            System.out.println(field1);
-            TimeUnit.MILLISECONDS.sleep(100);
+             game.playRound();
+             game.showBoard();
+            TimeUnit.MILLISECONDS.sleep(speed);
            }
 
 

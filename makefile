@@ -24,9 +24,8 @@ run_tests:
 	java -cp classes:${JUnitLibs} junit.textui.TestRunner Tests
 
 test:
-
-	build_tests
-	run_tests
+	make build_tests
+	make run_tests
 
 
 
