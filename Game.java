@@ -13,8 +13,6 @@ public class Game {
     }
 
     public void addCell (int x, int y){
-        System.out.println("Add cell: " + x + " " +y);
-
         if (x== 0  || y == 0 || x > board1.getXSize() || y > board1.getYSize()){
             throw new IllegalArgumentException("Cell out of bounds");
         }
