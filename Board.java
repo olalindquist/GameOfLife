@@ -12,7 +12,6 @@ public class Board{
         fill();
 
     }
-
     private void fill() {
         for (int x = 0; x<this.ySize;x++){
             for (int y = 0; y<this.xSize; y++){
@@ -24,11 +23,6 @@ public class Board{
     public void  makeCellAlive (int x, int y){
         this.matrix [x][y].wakeUp();
       }
-
-
-
-
-
 
     public int getXSize(){
         return this.xSize;
@@ -44,17 +38,19 @@ public class Board{
         this.matrix = newMatrix;
 
     }
-    public void playRound(Board nextField){
 
+    public void playRound(Board nextBoard){
+        int nONeighbours;
         for (int x = 1; x <this.xSize-1;x++){
             for (int y = 1; y< this.ySize-1; y++){
-                int nONeighbours = getNONeighbours(x,y);
-                nextField.matrix[x][y].setNONeighbours(nONeighbours);
+               nONeighbours = getNONeighbours(x,y);
+                nextBoard.matrix[x][y].setNONeighbours(nONeighbours);
             }
     }
+
            for (int x = 1; x <this.xSize-1;x++){
             for (int y = 1; y< this.ySize-1; y++){
-                playGame(x,y, nextField);
+                playGame(x,y, nextBoard);
             }
     }
     }
@@ -62,34 +58,33 @@ public class Board{
         return this.matrix[x][y];
     }
 
-    private void playGame(int x, int y, Board nextField) {
-        Cell cell = nextField.getCell(x,y);
+    private void playGame(int x, int y, Board nextBoard) {
+        Cell cell = nextBoard.getCell(x,y);
         int neighbours =cell.getNONeighbours();
 
         if (neighbours == 2) {
             return;
         }
 
-        if (neighbours==3 ) {
+        if (neighbours == 3) {
 
             if (cell.isAlive()){
-
                 return ;
             } else {
-                nextField.getCell(x,y).wakeUp();
+                nextBoard.getCell(x,y).wakeUp();
             }
         }
-            if (neighbours <2 ) {
-                nextField.getCell(x,y).kill();
+
+        if (neighbours < 2 ) {
+            nextBoard.getCell(x,y).kill();
                 return;
             }
+
             if (neighbours >3){
-                nextField.matrix[x][y].kill();
+                nextBoard.matrix[x][y].kill();
                 return;
             }
     }
-
-
 
     private int getNONeighbours(int x, int y){
         int counter = 0;
@@ -122,7 +117,6 @@ public class Board{
         if (matrix[x+1][x+1].isAlive()){
             counter +=1;
         }
-
 
         return counter;
 
