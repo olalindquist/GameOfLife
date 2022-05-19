@@ -9,7 +9,6 @@ public class Cell{
         this.xCoordinate =x;
         this.yCoodinate =y;
         this.alive = false;
-
     }
     public int getNONeighbours(){
         return this.nONeighbours;
@@ -18,21 +17,12 @@ public class Cell{
         this.nONeighbours = n;
     }
     public boolean isAlive(){
-
         return this.alive;
-
     }
     public void wakeUp(){
         this.alive = true;
     }
     public void kill(){
         this.alive = false;
-
     }
-
-
-
-
-
-
 }

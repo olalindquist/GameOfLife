@@ -1,10 +1,10 @@
 import  java.util.concurrent.TimeUnit;
-public class Game{
+
+public class Game {
 
     private Board board1;
     private Board board2;
     private int speed ;
-
 
     public Game (int xSize, int ySize, int speed){
         this.board1 = new Board(xSize, ySize);
@@ -13,7 +13,9 @@ public class Game{
     }
 
     public void addCell (int x, int y){
-        if (x==0  || y == 0 || x > board1.getXSize() || y >board1.getYSize()){
+        System.out.println("Add cell: " + x + " " +y);
+
+        if (x== 0  || y == 0 || x > board1.getXSize() || y > board1.getYSize()){
             throw new IllegalArgumentException("Cell out of bounds");
         }
         board1.makeCellAlive(x,y);
@@ -34,8 +36,8 @@ public class Game{
             System.out.println("Something wrong with time");
         }
     }
+
     public void showBoard(){
         System.out.println(board1.toString());
     }
-
 }
