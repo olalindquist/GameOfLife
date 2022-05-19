@@ -8,7 +8,7 @@ public class Board{
     public Board (int x, int y){
         this.xSize=x;
         this.ySize=y;
-        this.matrix = new Cell[x+2][y+2]; //add to in order to make a border
+        this.matrix = new Cell[x+2][y+2]; //add 2 to in order to make a border
         fill();
     }
 
@@ -106,7 +106,7 @@ public class Board{
         if (matrix[x][y+1].isAlive()){
             counter +=1;
         }
-        if (matrix[x+1][x+1].isAlive()){
+        if (matrix[x+1][y+1].isAlive()){
             counter +=1;
         }
         return counter;

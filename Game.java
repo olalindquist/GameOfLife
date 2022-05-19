@@ -6,7 +6,7 @@ public class Game {
     private Board board2;
     private int speed ;
 
-    public Game (int xSize, int ySize, int speed){
+    public Game (int ySize, int xSize, int speed){
         this.board1 = new Board(xSize, ySize);
         this.board2 = new Board(xSize, ySize);
         this.speed = speed;
@@ -16,8 +16,8 @@ public class Game {
         if (x== 0  || y == 0 || x > board1.getXSize() || y > board1.getYSize()){
             throw new IllegalArgumentException("Cell out of bounds");
         }
-        board1.makeCellAlive(x,y);
-        board2.makeCellAlive(x,y);
+        board1.makeCellAlive(y,x);
+        board2.makeCellAlive(y,x);
     }
 
     private void updateBoard(){
